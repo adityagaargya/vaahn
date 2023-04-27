@@ -1,0 +1,82 @@
+/* Media query for devices with a maximum width of 767px */
+@media only screen and (max-width: 767px) {
+  /* Your mobile styles go here */
+  .firstfoldcard {
+    /* display: flex; */
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-top: 25px;
+
+    width: 100%;
+    height: 600px;
+
+    /* background: #1e2427; */
+    background: linear-gradient(to bottom left, #000000, #191c2f);
+
+    border-radius: 16px;
+  }
+
+  .tagline {
+    width: 100%;
+    height: 82px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 41px;
+    /* or 145% */
+
+    /* display: flex; */
+    align-items: center;
+    text-align: center;
+
+    color: #ffffff;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    margin-bottom: 80px;
+
+    /* padding-bottom: 100px; */
+  }
+
+  .tag2 {
+    /* position: absolute; */
+    width: 100%;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    /* line-height: 150px; */
+    /* identical to box height, or 155% */
+
+    /* display: flex; */
+    /* align-items: center; */
+    text-align: center;
+
+    /* color: yellow; */
+
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .clickables {
+    color: yellow;
+    display: flex;
+    margin-top: 31px;
+    padding-left: 30px;
+    text-align: center;
+  }
+
+  .createnft-btn {
+    padding: 10px;
+  }
+
+  .explore-btn {
+    padding: 10px;
+  }
+}

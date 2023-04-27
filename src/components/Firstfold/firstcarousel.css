@@ -1,0 +1,10 @@
+/* Media query for devices with a maximum width of 767px */
+@media only screen and (max-width: 767px) {
+  .d-block {
+    border-radius: 20px;
+  }
+
+  .carousel {
+    padding: 15px;
+  }
+}

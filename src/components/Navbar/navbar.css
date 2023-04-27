@@ -1,0 +1,33 @@
+.mp {
+}
+@media only screen and (max-width: 767px) {
+  /* Your mobile styles go here */
+  .navtop {
+    margin-top: 2px;
+    height: 80px;
+    opacity: 0.6;
+    background-color: #191c1f;
+    display: flex;
+  }
+
+  .search-icon {
+    margin-left: 0px;
+  }
+
+  .navs {
+    display: flex;
+  }
+
+  .btn {
+    background: yellow;
+  }
+
+  .hamburger-view {
+    background: linear-gradient(to bottom left, #000000, #191c2f);
+    height: 100%;
+    color: white;
+  }
+
+  .close {
+  }
+}
