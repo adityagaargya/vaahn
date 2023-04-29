@@ -3,6 +3,7 @@ import "./firstfold.css";
 import createnft from "../../assests/createnft.svg";
 import explore from "../../assests/test.svg";
 import FirstCarousel from "./FirstCarousel";
+import { Link } from "react-router-dom";
 function FirstFold() {
   return (
     <>
@@ -16,7 +17,9 @@ function FirstFold() {
           </div>
           <div className="clickables">
             <div className="createnft-btn">
-              <img src={createnft}></img>
+              <Link to="/create">
+                <img src={createnft}></img>
+              </Link>
             </div>
             <div className="explore-btn">
               <img src={explore}></img>

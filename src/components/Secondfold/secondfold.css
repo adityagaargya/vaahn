@@ -1,0 +1,71 @@
+/* Media query for devices with a maximum width of 767px */
+@media only screen and (max-width: 767px) {
+  /* Your mobile styles go here */
+  .days-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 2px;
+
+    width: 100%;
+    height: 40px;
+
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-top: 32px;
+  }
+
+  .numeric {
+    display: flex;
+    justify-content: space-evenly;
+    align-text: center;
+    color: white;
+    padding: 5px;
+  }
+
+  .selected {
+    color: yellow;
+    border-radius: 10px;
+    background-color: black;
+  }
+
+  .d-flex {
+    /* background-color: purple; */
+  }
+
+  .price-filter {
+    display: flex;
+    margin-top: 32px;
+    color: white;
+    align-text: center;
+  }
+  .input-style {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    width: 80px;
+    background-color: rgba(255, 255, 255, 0.09);
+  }
+
+  .input-style:focus {
+    border-color: rgba(255, 255, 255, 0.09);
+  }
+
+  .floorprice {
+    margin-top: 5px;
+    padding: 5px;
+  }
+
+  .upto {
+    font-size: 10px;
+  }
+}

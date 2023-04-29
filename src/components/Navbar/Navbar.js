@@ -20,7 +20,7 @@ function BrandNav() {
     <>
       <Navbar variant="dark" className="navtop">
         <Container>
-          <Navbar.Brand href="#home">Vaahn</Navbar.Brand>
+          <Navbar.Brand href="/">Vaahn</Navbar.Brand>
           <div className="navs">
             <Nav>
               <div className="search-icon">
