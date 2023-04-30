@@ -41,7 +41,15 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landingpage></Landingpage>}></Route>
-          <Route path="/create" element={<CreateNFT></CreateNFT>}></Route>
+          <Route
+            path="/create"
+            element={
+              <CreateNFT
+                nftContract={nftContract}
+                account={account}
+              ></CreateNFT>
+            }
+          ></Route>
         </Routes>
       </Router>
     </div>

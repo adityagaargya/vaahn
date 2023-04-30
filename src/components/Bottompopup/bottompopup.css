@@ -20,6 +20,8 @@
     height: 400px;
     color: white;
     border-radius: 32px;
+    overflow-y: scroll;
+    /* opacity: 0.5; */
   }
 
   .upload {

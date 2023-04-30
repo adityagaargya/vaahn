@@ -4,9 +4,11 @@ import create from "../../assests/createnft.svg";
 import speedo from "../../assests/speedo.jpeg";
 import OffCanvasExample from "../Bottompopup/Bottompopup";
 import { useState } from "react";
+import Bottompopup from "../Bottompopup/Bottompopup";
 
-function CreateNFT() {
+function CreateNFT(props) {
   const [click, setClick] = useState(false);
+  console.log("Create NFT Auction from props", props.nftContract);
   return (
     <>
       <Container>
@@ -20,7 +22,10 @@ function CreateNFT() {
           Vaahn token: Fueling the Indian vehicles NFT marketplace for creators
           and collectors alike
         </div>
-        <OffCanvasExample></OffCanvasExample>
+        <Bottompopup
+          nftContract={props.nftContract}
+          account={props.account}
+        ></Bottompopup>
       </Container>
     </>
   );
