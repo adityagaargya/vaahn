@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import "./metadataform.css";
-
+import mint from "../../assests/mint.svg";
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI2OTYwOTU4NS01ZmUwLTRiOTUtYjE0ZC1mNDUxNTNlMGQ2NDciLCJlbWFpbCI6ImJsdWViYXJiYXJpYW4xQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiJiY2ZhMGFkOTg2MmEzZWM2MGQ0NiIsInNjb3BlZEtleVNlY3JldCI6ImFiNmUzZWMyM2ViZTU1MzIwNDU3ODgzMzJiNjE4OTA0YzA4NTMxZTEyZTNmM2IzZTQzYzZiY2RhOTdmMTQ4NjEiLCJpYXQiOjE2ODEwNjM4ODh9.stW-hDtLf17fqCXJGXDCi8ChsgHyb8v1dEEQzauCf80";
 
@@ -71,12 +71,15 @@ function Metadataform(props) {
       account,
       `https://ipfs.io/ipfs/${res.data["IpfsHash"]}`
     );
+    if (deployNFT.data) {
+      props.setMintStatus(true);
+    }
     console.log(deployNFT.data);
   };
   return (
     <>
       <div className="metadataform">
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <div className="metadataname child">
             <Form.Group controlId="formBasicName">
               {/* <Form.Label>Name</Form.Label>  */}
@@ -143,13 +146,11 @@ function Metadataform(props) {
             </Form.Group>
           </div>
 
-          <Button
-            variant="primary"
-            type="submit"
+          <img
+            onClick={handleSubmit}
             style={{ display: "block", margin: "auto" }}
-          >
-            Send Message
-          </Button>
+            src={mint}
+          ></img>
         </Form>
       </div>
     </>

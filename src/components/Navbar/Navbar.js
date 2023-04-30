@@ -7,12 +7,13 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import hamburgery from "../../assests/hamburger.svg";
-import test from "../../assests/test.svg";
-import close from "../../assests/close.svg";
-import metamask from "../../assests/metamask.svg";
 import "./navbar.css";
 import { connect, fetchNetwork, getContract } from "../contracts/ERC721";
 import { Auctionconnect, getAuctionContract } from "../contracts/Auction";
+import test from "../../assests/test.svg";
+import close from "../../assests/close.svg";
+import metamask from "../../assests/metamask.svg";
+import viewnft from "../../assests/viewnft.svg";
 
 function BrandNav(props) {
   const [show, setShow] = useState(false);
@@ -107,9 +108,7 @@ function BrandNav(props) {
             </Offcanvas.Header>
 
             <Offcanvas.Body>
-              <p className="mb-0">
-                This is content within an <code>.offcanvas-lg</code>.
-              </p>
+              <img src={viewnft} style={{ width: "100%" }}></img>
             </Offcanvas.Body>
           </div>
         </Offcanvas>

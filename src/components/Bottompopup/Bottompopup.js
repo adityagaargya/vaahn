@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import create from "../../assests/createnft.svg";
-import cancel from "../../assests/delete.png";
-import blank from "../../assests/blank.svg";
-import submit from "../../assests/submit.svg";
 import { Form } from "react-bootstrap";
 import "./bottompopup.css";
 import axios from "axios";
 import Metadataform from "../Metadataform/Metadataform";
+import SuccessAnimation from "actually-accessible-react-success-animation";
+import { Link } from "react-router-dom";
+import create from "../../assests/createnft.svg";
+import cancel from "../../assests/delete.png";
+import blank from "../../assests/blank.svg";
+import submit from "../../assests/submit.svg";
+import viewnft from "../../assests/viewnft.svg";
 
 const jwt =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI2OTYwOTU4NS01ZmUwLTRiOTUtYjE0ZC1mNDUxNTNlMGQ2NDciLCJlbWFpbCI6ImJsdWViYXJiYXJpYW4xQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiJiY2ZhMGFkOTg2MmEzZWM2MGQ0NiIsInNjb3BlZEtleVNlY3JldCI6ImFiNmUzZWMyM2ViZTU1MzIwNDU3ODgzMzJiNjE4OTA0YzA4NTMxZTEyZTNmM2IzZTQzYzZiY2RhOTdmMTQ4NjEiLCJpYXQiOjE2ODEwNjM4ODh9.stW-hDtLf17fqCXJGXDCi8ChsgHyb8v1dEEQzauCf80";
@@ -21,6 +24,11 @@ function Bottompopup(props) {
   const [IPFS, setIPFS] = useState(false);
   const [ipfsHash, setIpfsHash] = useState(false);
   const [fileUrl, setFileUrl] = useState("");
+  const [mintStatus, setMintStatus] = useState(false);
+
+  const getMintStatus = (data) => {
+    setMintStatus(data);
+  };
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -139,7 +147,7 @@ function Bottompopup(props) {
                   <></>
                 )}
 
-                {IPFS ? (
+                {IPFS && !mintStatus ? (
                   <>
                     <div className="displaypicture">
                       <img
@@ -153,7 +161,24 @@ function Bottompopup(props) {
                       ipfs={ipfsHash}
                       nftContract={props.nftContract}
                       account={props.account}
+                      setMintStatus={getMintStatus}
                     ></Metadataform>
+                  </>
+                ) : (
+                  <></>
+                )}
+
+                {mintStatus ? (
+                  <>
+                    {" "}
+                    <SuccessAnimation
+                      text="NFT Minted Successfully"
+                      color="#5cb85c"
+                      sliveRegion="live"
+                    />
+                    <Link>
+                      <img src={viewnft}></img>
+                    </Link>
                   </>
                 ) : (
                   <></>
