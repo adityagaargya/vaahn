@@ -29,5 +29,6 @@
   }
 
   .close {
+    padding-left: 8px;
   }
 }

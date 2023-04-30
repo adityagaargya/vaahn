@@ -6,11 +6,38 @@ import Secondfold from "./components/Secondfold/Secondfold";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landingpage from "./components/Landingpage/Landingpage";
 import CreateNFT from "./components/CreateNFT/CreateNFT";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [activeLink, setActiveLink] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [contract, setContract] = useState(null);
+  const [connected, setConnected] = useState(false);
+  const [isMember, setIsMember] = useState(false);
+  const [nftContract, setNftContract] = useState(null);
+  const [auctionContract, setAuctionContract] = useState(null);
+  const [account, setAccount] = useState(0);
+  const getNftContract = (data) => {
+    setNftContract(data);
+    console.log(nftContract);
+  };
+
+  const getAuctionContract = (data) => {
+    setAuctionContract(data);
+    console.log(auctionContract);
+  };
+
+  const getAccounts = (data) => {
+    setAccount(data);
+    console.log(account);
+  };
   return (
     <div className="App">
-      <BrandNav></BrandNav>
+      <BrandNav
+        setNft={getNftContract}
+        setAuction={getAuctionContract}
+        setAccount={getAccounts}
+      ></BrandNav>
       <Router>
         <Routes>
           <Route path="/" element={<Landingpage></Landingpage>}></Route>
