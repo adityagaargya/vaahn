@@ -1,0 +1,30 @@
+/* Media query for devices with a maximum width of 767px */
+@media only screen and (max-width: 767px) {
+  .viewcard {
+    background: linear-gradient(to bottom left, #000000, #191c2f);
+
+    color: purple;
+  }
+
+  .test {
+    box-sizing: border-box;
+
+    /* width: 311px;
+    height: 48px; */
+
+    /* border: 1px solid rgba(255, 255, 255, 0.08); */
+    border-radius: 16px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    background: green;
+  }
+
+  .cardimage {
+    height: 32px;
+    width: 100%;
+  }
+}
