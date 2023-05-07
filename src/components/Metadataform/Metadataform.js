@@ -52,6 +52,7 @@ function Metadataform(props) {
           max_value: 500,
         },
       ],
+      name: `${formData.name}.json`,
     };
     const res = await axios.post(
       `https://api.pinata.cloud/pinning/pinJSONToIPFS`,

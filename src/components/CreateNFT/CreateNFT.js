@@ -8,7 +8,6 @@ import Bottompopup from "../Bottompopup/Bottompopup";
 
 function CreateNFT(props) {
   const [click, setClick] = useState(false);
-  console.log("Create NFT Auction from props", props.nftContract);
   return (
     <>
       <Container>

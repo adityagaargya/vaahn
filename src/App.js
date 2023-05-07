@@ -8,6 +8,7 @@ import Landingpage from "./components/Landingpage/Landingpage";
 import CreateNFT from "./components/CreateNFT/CreateNFT";
 import { useEffect, useState } from "react";
 import ViewNFT from "./components/Viewnft/ViewNFT";
+import AuctionNFT from "./components/AuctionNFT/AuctionNFT";
 
 function App() {
   const [activeLink, setActiveLink] = useState("home");
@@ -59,6 +60,16 @@ function App() {
                 auctionContract={auctionContract}
                 account={account}
               ></ViewNFT>
+            }
+          ></Route>
+          <Route
+            path="/auction"
+            element={
+              <AuctionNFT
+                nftContract={nftContract}
+                auctionContract={auctionContract}
+                account={account}
+              ></AuctionNFT>
             }
           ></Route>
         </Routes>

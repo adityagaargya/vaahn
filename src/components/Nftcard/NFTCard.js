@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import "./nftcard.css";
 import axios from "axios";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function NFTCard(props) {
   const nftContract = props.nftContract;
@@ -26,8 +28,10 @@ function NFTCard(props) {
             let uri = await nftContract.tokenURI(tokenId);
             console.log("Uri", uri);
             let metadata = await axios.get(uri);
-            console.log("Meta", metadata.data);
-            setOwnedMetaData((prevMeta) => [...prevMeta, metadata.data]);
+            let meta = metadata.data;
+            meta["tokenId"] = tokenId;
+            console.log("Meta", meta);
+            setOwnedMetaData((prevMeta) => [...prevMeta, meta]);
             setOwned((prevId) => [...prevId, tokenId]);
           }
         }
@@ -46,6 +50,7 @@ function NFTCard(props) {
               src={ele.image}
               style={{ height: "250px", objectFit: "cover" }}
             />
+            {/* <div>{ele.attributes}</div> */}
             <Card.Body>
               <Card.Title>{ele.name}</Card.Title>
               <Card.Text>{ele.description}</Card.Text>
@@ -54,6 +59,9 @@ function NFTCard(props) {
               {/* <Card.Link href="#">Card Link</Card.Link>
               <Card.Link href="#">Another Link</Card.Link> */}
             </Card.Body>
+            <Link to={`/auction?tokenId=${ele.tokenId}`}>
+              <Button>List Token</Button>
+            </Link>
           </Card>
         );
       })}
