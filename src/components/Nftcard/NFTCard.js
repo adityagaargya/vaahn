@@ -20,7 +20,6 @@ function NFTCard(props) {
       nftContract.queryFilter(events).then(async (result) => {
         for (let i = 0; i < result.length; i++) {
           let tokenId = result[i]["args"][2].toNumber();
-          console.log("Came");
           console.log(tokenId);
           let owner = await nftContract.ownerOf(tokenId);
           if (owner.toLowerCase() === account.toLowerCase()) {

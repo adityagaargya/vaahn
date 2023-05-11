@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import "./auctionnft.css";
 function AuctionNFT(props) {
   const [tokenId, setTokenId] = useState(null);
   useEffect(() => {
@@ -9,7 +9,7 @@ function AuctionNFT(props) {
   }, [window.location.search]);
   return (
     <>
-      <div className="">Auction</div>
+      <div className="auctionlist-card">Auction</div>
     </>
   );
 }

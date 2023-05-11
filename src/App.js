@@ -18,6 +18,7 @@ function App() {
   const [isMember, setIsMember] = useState(false);
   const [nftContract, setNftContract] = useState(null);
   const [auctionContract, setAuctionContract] = useState(null);
+  const [tokenContract, setTokenContract] = useState(null);
   const [account, setAccount] = useState(0);
   const getNftContract = (data) => {
     setNftContract(data);
@@ -29,6 +30,10 @@ function App() {
     console.log(auctionContract);
   };
 
+  const getTokenContract = (data) => {
+    setTokenContract(data);
+    console.log(tokenContract);
+  };
   const getAccounts = (data) => {
     setAccount(data);
     console.log(account);
@@ -39,6 +44,7 @@ function App() {
         setNft={getNftContract}
         setAuction={getAuctionContract}
         setAccount={getAccounts}
+        setToken={getTokenContract}
       ></BrandNav>
       <Router>
         <Routes>

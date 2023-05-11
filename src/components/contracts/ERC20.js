@@ -31,7 +31,9 @@ const abiToken = [
   "function unpause()",
 ];
 
-export const connect = async () => {
+const providers = new ethers.providers.Web3Provider(window.ethereum);
+
+export const tokenConnect = async () => {
   await providers.send("eth_requestAccounts", []);
   return getTokenContract();
 };

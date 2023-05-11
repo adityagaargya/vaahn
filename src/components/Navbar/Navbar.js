@@ -14,6 +14,7 @@ import test from "../../assests/test.svg";
 import close from "../../assests/close.svg";
 import metamask from "../../assests/metamask.svg";
 import viewnft from "../../assests/viewnft.svg";
+import { getTokenContract, tokenConnect } from "../contracts/ERC20";
 
 function BrandNav(props) {
   const [show, setShow] = useState(false);
@@ -21,6 +22,7 @@ function BrandNav(props) {
   const [scrolled, setScrolled] = useState(false);
   const [contract, setContract] = useState(null);
   const [auctionContract, setAuctionContract] = useState(null);
+  const [tokenContract, setTokenContract] = useState(null);
   const [connected, setConnected] = useState(false);
   const [isMember, setIsMember] = useState(false);
   const [account, setAccount] = useState(0);
@@ -49,6 +51,10 @@ function BrandNav(props) {
       setAuctionContract(auctionContract);
       props.setAuction(auctionContract);
     });
+    getTokenContract().then(({ tokenContract, signer }) => {
+      setTokenContract(tokenContract);
+      props.setToken(tokenContract);
+    });
   };
 
   const connectCallBack = async () => {
@@ -58,12 +64,15 @@ function BrandNav(props) {
     } else {
       const { contract } = await connect();
       const { auctionContract } = await Auctionconnect();
+      const { tokenContract } = await tokenConnect();
       setContract(contract);
       setAuctionContract(auctionContract);
+      setTokenContract(tokenContract);
       props.setNft(contract);
       props.setAuction(auctionContract);
+      props.setToken(tokenContract);
 
-      if (contract && auctionContract) {
+      if (contract && auctionContract && tokenContract) {
         setConnected(true);
       }
     }
