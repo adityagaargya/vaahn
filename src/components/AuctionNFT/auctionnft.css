@@ -8,11 +8,62 @@
     margin-top: 25px;
 
     width: 100%;
-    height: 600px;
+    /* height: 600px; */
 
-    background: white;
+    /* background: white; */
     /* background: linear-gradient(to bottom left, #000000, #191c2f); */
 
     border-radius: 16px;
+  }
+
+  .card {
+    background: linear-gradient(to bottom left, #000000, #191c2f);
+    border-radius: 16px;
+  }
+
+  .metadataform {
+    padding: 5px;
+  }
+
+  .child {
+    margin: 10px;
+  }
+
+  .metadataname {
+    /* color: yellow; */
+  }
+
+  .metadataform .child .form-control {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    box-shadow: none;
+  }
+
+  .metadataform .child .form-control:focus {
+    border-color: grey;
+    box-shadow: none;
+  }
+  .metadataform input {
+    /* display: none; */
+    color: white;
+    background-color: rgba(255, 255, 255, 0.09);
+    border-radius: 12px;
+  }
+
+  .metadataform input:focus {
+    /* display: none; */
+    background-color: black;
+    color: white;
+    border-radius: 12px;
+  }
+
+  .metadataform .child .form-control::placeholder {
+    color: #aaa;
+  }
+
+  .auction-btn {
+    margin-top: 12px;
+    /* display: none; */
   }
 }
