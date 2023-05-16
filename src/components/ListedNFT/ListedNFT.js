@@ -4,6 +4,8 @@ import placebid from "../../assests/placebid.svg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./listednft.css";
+import Secondfold from "../Secondfold/Secondfold";
+import NFTInfo from "./NFTInfo";
 function ListedNFT() {
   return (
     <>
@@ -88,6 +90,7 @@ function ListedNFT() {
             <div className="saleend">Sale ends in 0d 0f 13h 5h</div>
           </div>
         </div>
+        <NFTInfo></NFTInfo>
       </Container>
     </>
   );
