@@ -1,18 +1,91 @@
 import { Container } from "react-bootstrap";
-import filler from "../../assests/test.jpeg";
+import filler from "../../assests/test.svg";
 import placebid from "../../assests/placebid.svg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./listednft.css";
 import Secondfold from "../Secondfold/Secondfold";
 import NFTInfo from "./NFTInfo";
-function ListedNFT() {
+import { useEffect, useState } from "react";
+import axios from "axios";
+function ListedNFT(props) {
+  const nftContract = props.nftContract;
+  const auctionContract = props.auctionContract;
+  const [owned, setOwned] = useState([]);
+  const [owner, setOwner] = useState(null);
+  const [minPrice, setMinPrice] = useState(null);
+  const [highestBid, setHighestBid] = useState(null);
+  const [highestBidder, setHighestBidder] = useState(null);
+  const [auctionId, setAuctionId] = useState(null);
+  const [auctionMetaData, setAuctionMetaData] = useState();
+  const [tokenId, setTokenId] = useState(null);
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    setTokenId(query.get("tokenId"));
+    const GetTransferByAddress = async () => {
+      console.log("NFT", nftContract);
+      const events = await nftContract.filters.Transfer(
+        null,
+        auctionContract.address
+      );
+      console.log(events);
+      let owner;
+      try {
+        owner = await nftContract.ownerOf(tokenId);
+      } catch (err) {
+        alert(err);
+      }
+      // console.log(owner.data);
+      if (owner.toLowerCase() === auctionContract.address.toLowerCase()) {
+        let uri = await nftContract.tokenURI(tokenId);
+        console.log("Uri", uri);
+        let metadata = await axios.get(uri);
+        let meta = metadata.data;
+        meta["tokenId"] = tokenId;
+        console.log("Meta", meta);
+        setAuctionMetaData(meta);
+        setOwned(tokenId);
+        const createAuctionEvent = await auctionContract.filters.AuctionCreated(
+          null,
+          nftContract.address,
+          tokenId
+        );
+        console.log("Events", createAuctionEvent);
+        auctionContract.queryFilter(createAuctionEvent).then(async (res) => {
+          const activeAuction = res[res.length - 1];
+          console.log("Here", res[res.length - 1]);
+          console.log("MinPrice", activeAuction["args"]["minPrice"].toNumber());
+          setAuctionId(activeAuction["args"]["id"].toNumber());
+          setMinPrice(activeAuction["args"]["minPrice"].toNumber());
+          setOwner(activeAuction["args"]["owner"]);
+
+          console.log("Auc Id", auctionId);
+          if (auctionId != null) {
+            const getAuctionDetails = await auctionContract.getAuction(
+              auctionId
+            );
+            console.log("Auc Details", getAuctionDetails);
+            setHighestBid(getAuctionDetails[4].toNumber());
+            if (getAuctionDetails[5].toNumber() === 0) {
+              setHighestBidder(owner);
+            } else {
+              setHighestBidder(getAuctionDetails[5].toNumber());
+            }
+            // console.log(owner);
+          }
+        });
+      } else {
+        alert("Not in auction");
+      }
+    };
+    GetTransferByAddress();
+  }, [nftContract, auctionContract, auctionId]);
   return (
     <>
       <Container>
         <div>
           <img
-            src={filler}
+            src={auctionMetaData ? auctionMetaData.image : filler}
             className="nftholder"
             style={{ objectFit: "cover" }}
           ></img>
@@ -20,7 +93,10 @@ function ListedNFT() {
             <Container>
               <div className="nftclass">MutantApeYachtClub</div>
               <div className="nftname">MutantApeYachtClub</div>
-              <div className="nftId">#1</div>
+              <div className="nftId">
+                {" "}
+                #{auctionMetaData ? auctionMetaData["tokenId"] : ""}
+              </div>
             </Container>
           </div>
           <Container className="nftownershipdetails">
@@ -54,7 +130,9 @@ function ListedNFT() {
                         {" "}
                         <div className="ownerinfo">
                           <div style={{ color: "grey" }}>Owner</div>
-                          <div className="nftowneraddress">0x122sds1</div>
+                          <div className="nftowneraddress">
+                            {owner ? owner.substring(0, 5) : ""}
+                          </div>
                         </div>
                       </Col>
                     </Row>
@@ -68,13 +146,15 @@ function ListedNFT() {
             <div className="pricecard">
               <Container>
                 <div className="price">Price</div>
-                <div className="vhnprice">13.22 VHN </div>
+                <div className="vhnprice">
+                  {highestBid ? highestBid : ""} VHN{" "}
+                </div>
                 <div className="rupeeprice">₹ 300 </div>
               </Container>
             </div>
             <Container>
               <div className="d-flex justify-content-center lastsale">
-                Last sale price 9.95 VHN
+                Last sale price {minPrice} VHN
               </div>
             </Container>
             <div className="buynow">
@@ -90,7 +170,7 @@ function ListedNFT() {
             <div className="saleend">Sale ends in 0d 0f 13h 5h</div>
           </div>
         </div>
-        <NFTInfo></NFTInfo>
+        <NFTInfo auctionMetadata={auctionMetaData}></NFTInfo>
       </Container>
     </>
   );
