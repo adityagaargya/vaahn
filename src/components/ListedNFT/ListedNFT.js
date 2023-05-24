@@ -8,6 +8,7 @@ import Secondfold from "../Secondfold/Secondfold";
 import NFTInfo from "./NFTInfo";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PlaceBid from "../Placebid/PlaceBid";
 function ListedNFT(props) {
   const nftContract = props.nftContract;
   const auctionContract = props.auctionContract;
@@ -35,7 +36,7 @@ function ListedNFT(props) {
       } catch (err) {
         alert(err);
       }
-      // console.log(owner.data);
+      console.log("Owner", owner);
       if (owner.toLowerCase() === auctionContract.address.toLowerCase()) {
         let uri = await nftContract.tokenURI(tokenId);
         console.log("Uri", uri);
@@ -164,8 +165,9 @@ function ListedNFT(props) {
                 </div>
               </Container>
             </div>
+
             <div className="placebid">
-              <img src={placebid}></img>
+              <PlaceBid></PlaceBid>
             </div>
             <div className="saleend">Sale ends in 0d 0f 13h 5h</div>
           </div>
