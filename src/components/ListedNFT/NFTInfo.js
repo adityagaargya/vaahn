@@ -94,7 +94,7 @@ function NFTInfo(props) {
             <Container>
               {attrs.map((ele) => {
                 return (
-                  <div className="properties-card">
+                  <div key={ele.trait_type} className="properties-card">
                     <Row>
                       <Col>
                         <div className="property-name">{ele.trait_type}</div>

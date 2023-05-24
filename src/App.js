@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import ViewNFT from "./components/Viewnft/ViewNFT";
 import AuctionNFT from "./components/AuctionNFT/AuctionNFT";
 import ListedNFT from "./components/ListedNFT/ListedNFT";
+import RemoveInProd from "./components/RemoveInProd/RemoveInProd";
 
 function App() {
   const [activeLink, setActiveLink] = useState("home");
@@ -87,6 +88,17 @@ function App() {
                 auctionContract={auctionContract}
                 account={account}
               ></ListedNFT>
+            }
+          ></Route>
+          <Route
+            path="/remove"
+            element={
+              <RemoveInProd
+                nftContract={nftContract}
+                auctionContract={auctionContract}
+                tokenContract={tokenContract}
+                account={account}
+              ></RemoveInProd>
             }
           ></Route>
         </Routes>
