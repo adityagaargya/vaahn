@@ -1,0 +1,10 @@
+/* Media query for devices with a maximum width of 767px */
+@media only screen and (max-width: 767px) {
+  .bid-popup {
+    /* background-color: #222528; */
+    background-color: black;
+
+    height: 100%;
+    color: white;
+  }
+}

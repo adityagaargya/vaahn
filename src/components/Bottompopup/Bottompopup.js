@@ -108,7 +108,7 @@ function Bottompopup(props) {
             {/* <button onClick={handleClose}>click</button> */}
           </Offcanvas.Header>
 
-          <Offcanvas.Body>
+ 
             <div className="bottompopup-body">
               <Container>
                 {!IPFS ? (
